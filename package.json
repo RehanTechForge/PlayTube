@@ -2,6 +2,7 @@
   "name": "yt-backend",
   "version": "1.0.0",
   "description": "this is yt backend for web-dev-pro course project",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
