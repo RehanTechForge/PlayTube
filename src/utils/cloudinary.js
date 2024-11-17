@@ -4,7 +4,7 @@ import config from "../config/config.js";
 import fs from "node:fs";
 cloudinary.config({
   cloud_name: config.CLOUDINARY_CLOUD_NAME,
-  api_key: config.CLOUDINARY_API_SECRET,
+  api_key: config.CLOUDINARY_API_KEY,
   api_secret: config.CLOUDINARY_API_SECRET,
 });
 
@@ -18,10 +18,20 @@ const uploadOnCloudinary = async (localFilePath) => {
     fs.unlinkSync(localFilePath);
     return response;
   } catch (error) {
-    logger.error(`Error While Uploading On Cloudinary ${error}`);
+    logger.error(`Error While Uploading On Cloudinary ${error.message}`);
     fs.unlinkSync(localFilePath);
     return null;
   }
 };
 
-export default uploadOnCloudinary;
+const removeFromCloudinary = async (publicId) => {
+  try {
+    await cloudinary.uploader.destroy(publicId);
+    logger.info(`Delete from Cloudinary ${publicId}`);
+  } catch (error) {
+    logger.error(`Error While Removing From Cloudinary ${error}`);
+    return null;
+  }
+};
+
+export { uploadOnCloudinary, removeFromCloudinary };

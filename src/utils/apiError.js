@@ -13,7 +13,7 @@ class ApiError extends Error {
     this.errors = errors;
     this.success = false;
     if (config.ENV === "development") {
-      this.stack = stack || new Error().stack;
+      this.stack = stack;
     } else {
       this.stack = null;
     }
