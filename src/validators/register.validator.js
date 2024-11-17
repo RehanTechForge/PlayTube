@@ -15,11 +15,6 @@ const registerSchema = z.object({
     .min(1, "Email is required")
     .trim(),
   fullName: z.string().min(1, "Full name is required").trim(),
-  avatar: z
-    .string()
-    .url("Avatar must be a valid URL")
-    .min(1, "Avatar URL is required"),
-  coverImage: z.string().url("Cover image must be a valid URL").optional(),
   watchHistory: z
     .array(z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid ObjectId"))
     .optional(),

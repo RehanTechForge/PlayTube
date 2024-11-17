@@ -36,7 +36,9 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 import healthCheckRouter from "./routes/health-check.routes.js";
+import userRouter from "./routes/user.route.js";
 
 app.use("/api/v1/health-check", healthCheckRouter);
+app.use("/api/v1/users", userRouter);
 
 export default app;
