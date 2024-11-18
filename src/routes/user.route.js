@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { loginUser, registerUser } from "../controllers/user.controller.js";
+import {
+  loginUser,
+  refreshAccessToken,
+  registerUser,
+} from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import validate from "../middlewares/validate.middleware.js";
 import registerSchema from "../validators/register.validator.js";
@@ -16,5 +20,6 @@ router.route("/register").post(
 );
 
 router.route("/login").post(validate(loginSchema), loginUser);
+router.route("/refresh-access-token").post(refreshAccessToken);
 
 export default router;
